@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AnswerBox2</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if current_user %>
+      <%= link_to "logout", sessions_path %>
+      <%= link_to "Profile", current_user %>
+    <% else %>
+      <%= link_to "Login", new_session_path %>
+      <%= link_to "Sign Up", new_user_path %>
+    <% end %>
+    <%= link_to "Home", questions_path %>
+    <%= yield %>
+  </body>
+</html>
