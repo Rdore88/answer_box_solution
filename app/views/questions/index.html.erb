@@ -5,5 +5,8 @@
 <% @questions.each do |question|%>
   <%= question.title %>
   <%= link_to "Show", question_path(question) %>
+  <% if question.user_id === current_user.id %>
+    <%= link_to "Delete", question, method: :delete %>
+  <% end %>
   <br>
 <% end %>

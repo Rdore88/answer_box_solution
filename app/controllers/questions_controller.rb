@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authorize!, except: [:index]
-  before_action :find_question, only: [:show, :destroy]
+  before_action :find_question, only: [:show, :destroy, :edit, :update]
 
   def index
     @questions = Question.all.page params[:page]
@@ -30,7 +30,21 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    #code
+    @question.delete
+    redirect_to questions_path
+  end
+
+  def edit
+    @question
+  end
+
+  def update
+    @question.update(question_params)
+    if @question.save
+      redirect_to question_path(@question)
+    else
+      render "edit"
+    end
   end
 
   private
