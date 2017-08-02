@@ -4,5 +4,6 @@ class Question < ApplicationRecord
   require 'redcarpet'
   require 'redcarpet/render_strip'
   paginates_per 10
+  validates :question, presence: true
 
 end

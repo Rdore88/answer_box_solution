@@ -13,16 +13,20 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @question.user_id = session[:user_id]
-    binding.pry
     if @question.save
       redirect_to question_path(@question)
     else
-      redirect_to new_question_path
+      render "new"
     end
+  end
+
+  def answer
+    @answer = Answer.new
   end
 
   def show
     @question
+    @answer = Answer.new
   end
 
   def destroy
